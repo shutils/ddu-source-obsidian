@@ -17,7 +17,7 @@ export class Filter extends BaseFilter<BaseFilterParams> {
       if (u.isObjectOf({ note: isNote, ...u.isUnknown })(item.action)) {
         const note = item.action.note;
         const relativePath = path.relative(note.vault, note.path);
-        item.display = `${item.display ?? item.word} (${relativePath})`;
+        item.display = `${relativePath}`;
       }
       return item;
     }));

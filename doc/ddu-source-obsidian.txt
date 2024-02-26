@@ -43,16 +43,17 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\   },
 		\   options: #{
 		\       matchers: [
+		\         "converter_obsidian_rel_path",
 		\         "converter_obsidian_title",
 		\         "converter_display_word",
 		\         "matcher_fzf",
 		\       ],
 		\       sorters: [
+		\         "converter_obsidian_rel_path",
 		\         "converter_obsidian_title",
 		\         "converter_display_word",
 		\         "sorter_fzf",
 		\       ],
-		\       converters: ["converter_obsidian_path"],
 		\   },
 		\ }] })
 
@@ -68,16 +69,17 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\   },
 		\   options: #{
 		\       matchers: [
+		\         "converter_obsidian_rel_path",
 		\         "converter_obsidian_title",
 		\         "converter_display_word",
 		\         "matcher_fzf",
 		\       ],
 		\       sorters: [
+		\         "converter_obsidian_rel_path",
 		\         "converter_obsidian_title",
 		\         "converter_display_word",
 		\         "sorter_fzf",
 		\       ],
-		\       converters: ["converter_obsidian_path"],
 		\   },
 		\ }] })
 
@@ -106,16 +108,17 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\   },
 		\   options: #{
 		\       matchers: [
+		\         "converter_obsidian_rel_path",
 		\         "converter_obsidian_title",
 		\         "converter_display_word",
 		\         "matcher_fzf",
 		\       ],
 		\       sorters: [
+		\         "converter_obsidian_rel_path",
 		\         "converter_obsidian_title",
 		\         "converter_display_word",
 		\         "sorter_fzf",
 		\       ],
-		\       converters: ["converter_obsidian_path"],
 		\   },
 		\ }] })
 	endfunction

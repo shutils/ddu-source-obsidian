@@ -51,7 +51,7 @@ export class Source extends BaseSource<Params> {
         const items: Item<ActionData>[] = [];
         notes.map((note) => {
           items.push({
-            word: `${note.name}`,
+            word: `${note.path}`,
             action: {
               path: note.path,
               note,
