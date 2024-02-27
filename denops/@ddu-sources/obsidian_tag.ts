@@ -6,7 +6,7 @@ import {
   unknownutil as u,
 } from "../deps.ts";
 
-import { getNotes, getPropertyTags } from "./common.ts";
+import { getNotes, getPropertyTags } from "../common.ts";
 
 type Params = {
   vault?: string;

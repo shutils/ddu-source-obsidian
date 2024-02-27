@@ -4,20 +4,28 @@ import {
   DduItem,
   FilterArguments,
   unknownutil as u,
-  path,
 } from "../deps.ts";
 
-import { isNote } from "../types.ts";
+import { getYamlFrontMatter } from "../common.ts";
 
 export class Filter extends BaseFilter<BaseFilterParams> {
   filter(
     { items }: FilterArguments<BaseFilterParams>,
   ): Promise<DduItem[]> {
-    return Promise.resolve(items.map((item: DduItem) => {
-      if (u.isObjectOf({ note: isNote, ...u.isUnknown })(item.action)) {
-        if (u.isObjectOf({ title: u.isString })(item.action.note.properties)) {
-          const parsedPath = path.parse(item.display ?? item.word)
-          item.display = path.join(parsedPath.dir, item.action.note.properties.title)
+    return Promise.all(items.map(async (item: DduItem) => {
+      if (u.isObjectOf({ path: u.isString, ...u.isUnknown })(item.action)) {
+        if (
+          u.isObjectOf({ isDirectory: u.isBoolean, ...u.isUnknown })(
+            item.action,
+          )
+        ) {
+          if (item.action.isDirectory) {
+            return item;
+          }
+        }
+        const frontMatter = await getYamlFrontMatter(item.action.path);
+        if (u.isObjectOf({ title: u.isString, ...u.isUnknown })(frontMatter)) {
+          item.display = `${item.display ?? item.word} (${frontMatter.title})`;
         }
       }
       return item;

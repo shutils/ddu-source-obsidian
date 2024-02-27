@@ -7,7 +7,7 @@ import {
 } from "../deps.ts";
 
 import { isNote, Note } from "../types.ts";
-import { getBacklinks } from "./common.ts";
+import { getBacklinks } from "../common.ts";
 
 export const isActionData = u.isObjectOf({
   path: u.isString,

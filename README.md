@@ -37,17 +37,12 @@ https://github.com/BurntSushi/ripgrep
 		\   },
 		\   options: #{
 		\       matchers: [
+		\         "converter_obsidian_rel_path",
 		\         "converter_obsidian_title",
 		\         "converter_display_word",
-		\         "matcher_fzf",
+		\         "matcher_substring",
 		\       ],
-		\       sorters: [
-		\         "converter_obsidian_title",
-		\         "converter_display_word",
-		\         "sorter_fzf",
-		\       ],
-		\       converters: ["converter_obsidian_path"],
+		\       converters: ["converter_obsidian_backlink"],
 		\   },
 		\ }] })
 ```
-

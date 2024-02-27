@@ -46,13 +46,7 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\         "converter_obsidian_rel_path",
 		\         "converter_obsidian_title",
 		\         "converter_display_word",
-		\         "matcher_fzf",
-		\       ],
-		\       sorters: [
-		\         "converter_obsidian_rel_path",
-		\         "converter_obsidian_title",
-		\         "converter_display_word",
-		\         "sorter_fzf",
+		\         "matcher_substring",
 		\       ],
 		\       converters: ["converter_obsidian_backlink"]
 		\   },
@@ -73,14 +67,9 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\         "converter_obsidian_rel_path",
 		\         "converter_obsidian_title",
 		\         "converter_display_word",
-		\         "matcher_fzf",
+		\         "matcher_substring",
 		\       ],
-		\       sorters: [
-		\         "converter_obsidian_rel_path",
-		\         "converter_obsidian_title",
-		\         "converter_display_word",
-		\         "sorter_fzf",
-		\       ],
+		\       converters: ["converter_obsidian_backlink"]
 		\   },
 		\ }] })
 
@@ -112,13 +101,7 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\         "converter_obsidian_rel_path",
 		\         "converter_obsidian_title",
 		\         "converter_display_word",
-		\         "matcher_fzf",
-		\       ],
-		\       sorters: [
-		\         "converter_obsidian_rel_path",
-		\         "converter_obsidian_title",
-		\         "converter_display_word",
-		\         "sorter_fzf",
+		\         "matcher_substring",
 		\       ],
 		\       converters: ["converter_obsidian_backlink"]
 		\   },
@@ -157,13 +140,7 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\         "converter_obsidian_rel_path",
 		\         "converter_obsidian_title",
 		\         "converter_display_word",
-		\         "matcher_fzf",
-		\       ],
-		\       sorters: [
-		\         "converter_obsidian_rel_path",
-		\         "converter_obsidian_title",
-		\         "converter_display_word",
-		\         "sorter_fzf",
+		\         "matcher_substring",
 		\       ],
 		\   },
 		\ }] })

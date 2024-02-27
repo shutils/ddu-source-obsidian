@@ -11,7 +11,7 @@ import {
 } from "../deps.ts";
 
 import { isNote, Note } from "../types.ts";
-import { filterNotesWithTag, getNotes, paste } from "./common.ts";
+import { filterNotesWithTag, getNotes, paste } from "../common.ts";
 
 export const isActionData = u.isObjectOf({
   path: u.isString,

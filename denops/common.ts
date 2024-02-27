@@ -1,6 +1,6 @@
-import { Denops, fn, path, unknownutil as u, yaml } from "../deps.ts";
+import { Denops, fn, path, unknownutil as u, yaml } from "./deps.ts";
 
-import { isNote, Note } from "../types.ts";
+import { isNote, Note } from "./types.ts";
 
 export async function getYamlFrontMatter(path: string) {
   const file = await Deno.readTextFile(path);
