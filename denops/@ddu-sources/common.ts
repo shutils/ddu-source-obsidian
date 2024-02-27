@@ -30,6 +30,33 @@ export async function getYamlFrontMatter(path: string) {
   }
 }
 
+export async function getBacklinks(vault: string, filePath: string) {
+  const result = new Deno.Command("rg", {
+    args: ["-l", `\\[.*\\]\\(.*${path.basename(filePath)}.*\\)`, vault],
+  });
+  const { success, stdout } = result.outputSync();
+  if (!success) {
+    return [];
+  } else {
+    const backlinks: Note[] = [];
+    const notePaths = new TextDecoder().decode(stdout)
+      .split("\n")
+      .filter((line) => line.length > 0);
+    await Promise.all(notePaths.map(async (notePath) => {
+      const name = path.parse(notePath).name;
+      const properties = await getYamlFrontMatter(notePath);
+      const note: Note = {
+        path: notePath,
+        name,
+        vault,
+        properties,
+      };
+      backlinks.push(note);
+    }));
+    return backlinks;
+  }
+}
+
 export async function getNotes(vault: string) {
   const result = new Deno.Command("rg", {
     args: ["--files", vault, "--glob", "**/*\\.md"],
@@ -45,11 +72,13 @@ export async function getNotes(vault: string) {
     await Promise.all(notePaths.map(async (notePath) => {
       const name = path.parse(notePath).name;
       const properties = await getYamlFrontMatter(notePath);
+      const backlinks = await getBacklinks(vault, notePath);
       const note: Note = {
         path: notePath,
         name,
         vault,
         properties,
+        backlinks,
       };
       notes.push(note);
     }));
