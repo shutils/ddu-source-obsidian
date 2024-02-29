@@ -1,0 +1,36 @@
+*ddu-source-obsidian_backlink.txt*	obsidian source for ddu.vim
+
+Author: shutils
+License: MIT license
+
+CONTENTS                               *ddu-source-obsidian_backlink-contents*
+
+Introduction		|ddu-source-obsidian_backlink-introduction|
+Params			|ddu-source-obsidian_backlink-params|
+
+
+==============================================================================
+INTRODUCTION                       *ddu-source-obsidian_backlink-introduction*
+
+This source collects obsidian backlink in current note.
+NOTE: This source currently only supports markdown style links.
+
+
+==============================================================================
+PARAMS                                   *ddu-source-obsidian_backlink-params*
+
+                                       *ddu-source-obsidian_tag-params-vault*
+vault
+  Your vault directory path. Notes under this directory will be retrieved.
+
+  Default: "~/obsidian"
+
+
+==============================================================================
+ACTIONS                                   *ddu-kind-obsidian_backlink-actions*
+
+The action is the same as |ddu-kind-file|.
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:noet:
