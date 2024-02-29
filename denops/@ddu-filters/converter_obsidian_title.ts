@@ -6,7 +6,7 @@ import {
   unknownutil as u,
 } from "../deps.ts";
 
-import { getYamlFrontMatter } from "../common.ts";
+import { getProperties } from "../common.ts";
 
 export class Filter extends BaseFilter<BaseFilterParams> {
   filter(
@@ -23,9 +23,9 @@ export class Filter extends BaseFilter<BaseFilterParams> {
             return item;
           }
         }
-        const frontMatter = await getYamlFrontMatter(item.action.path);
-        if (u.isObjectOf({ title: u.isString, ...u.isUnknown })(frontMatter)) {
-          item.display = `${item.display ?? item.word} (${frontMatter.title})`;
+        const properties = await getProperties(item.action.path);
+        if (u.isObjectOf({ title: u.isString, ...u.isUnknown })(properties)) {
+          item.display = `${item.display ?? item.word} (${properties.title})`;
         }
       }
       return item;
