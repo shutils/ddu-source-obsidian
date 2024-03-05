@@ -43,7 +43,7 @@ export class Source extends BaseSource<Params> {
         const vaults = await ensureVaults(denops, sourceParams?.vaults);
         await Promise.all(vaults.map(async (vault) => {
           if (tag) {
-            notes.push(...filterNotesWithTag(notes, tag));
+            notes.push(...filterNotesWithTag(await getNotes(vault), tag));
           } else {
             notes.push(...await getNotes(vault));
           }
