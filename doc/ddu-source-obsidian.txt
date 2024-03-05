@@ -39,7 +39,12 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_note',
 		\   params: #{
-		\       vaults: [expand('~/zettelkasten')],
+		\       vaults: [
+		\         {
+		\           path: expand('~/zettelkasten'),
+		\           name: "remote"
+		\         }
+		\       ],
 		\   },
 		\   options: #{
 		\       matchers: [
@@ -59,7 +64,12 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_note',
 		\   params: #{
-		\       vaults: [expand('~/zettelkasten')],
+		\       vaults: [
+		\         {
+		\           path: expand('~/zettelkasten'),
+		\           name: "remote"
+		\         }
+		\       ],
 		\       tag: input('tag: '),
 		\   },
 		\   options: #{
@@ -80,7 +90,12 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_tag',
 		\   params: #{
-		\       vaults: [expand('~/zettelkasten')],
+		\       vaults: [
+		\         {
+		\           path: expand('~/zettelkasten'),
+		\           name: "remote"
+		\         }
+		\       ],
 		\   },
 		\ }] })
 
@@ -93,7 +108,12 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_note',
 		\   params: #{
-		\       vaults: [expand('~/zettelkasten')],
+		\       vaults: [
+		\         {
+		\           path: expand('~/zettelkasten'),
+		\           name: "remote"
+		\         }
+		\       ],
 		\       tag: a:args.items[0].action.tag,
 		\   },
 		\   options: #{
@@ -118,7 +138,12 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_tag',
 		\   params: #{
-		\       vaults: [expand('~/zettelkasten')],
+		\       vaults: [
+		\         {
+		\           path: expand('~/zettelkasten'),
+		\           name: "remote"
+		\         }
+		\       ],
 		\   },
 		\   options: #{
 		\       defaultAction: 'findNotes',
@@ -132,7 +157,12 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_backlink',
 		\   params: #{
-		\       vaults: [expand('~/zettelkasten')],
+		\       vaults: [
+		\         {
+		\           path: expand('~/zettelkasten'),
+		\           name: "remote"
+		\         }
+		\       ],
 		\       notePath: expand('%'),
 		\   },
 		\   options: #{

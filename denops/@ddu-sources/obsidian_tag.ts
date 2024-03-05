@@ -5,12 +5,12 @@ import {
   unknownutil as u,
 } from "../deps.ts";
 
-import {  Note } from "../types.ts";
+import { Note, Vault } from "../types.ts";
 import { getNotes, getPropertyTags } from "../common.ts";
 import { ensureVaults } from "../helper.ts";
 
 type Params = {
-  vaults?: string[];
+  vaults?: Vault[];
 };
 
 export const isActionData = u.isObjectOf({
@@ -28,7 +28,8 @@ export class Source extends BaseSource<Params> {
   ): ReadableStream<Item<ActionData>[]> {
     return new ReadableStream({
       async start(controller) {
-        const vaults = ensureVaults(args.sourceParams?.vaults);
+        const { denops, sourceParams } = args;
+        const vaults = await ensureVaults(denops, sourceParams?.vaults);
         const notes: Note[] = [];
         await Promise.all(vaults.map(async (vault) => {
           notes.push(...await getNotes(vault));
