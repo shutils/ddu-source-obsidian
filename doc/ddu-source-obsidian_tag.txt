@@ -23,10 +23,10 @@ Actions in this project extended ddu-kind-file, so check |ddu-kind-file|
 for more actions.
 
                                        *ddu-source-obsidian_tag-params-vault*
-vault
-  Your vault directory path. Notes under this directory will be retrieved.
+vaults
+  Your vault directory paths. Notes under this directory will be retrieved.
 
-  Default: "~/obsidian"
+  Default: ["~/obsidian"]
 
 
 ==============================================================================
