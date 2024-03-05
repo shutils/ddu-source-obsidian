@@ -1,1 +1,2 @@
-export const defaultVaults = ["~/obsidian"];
+export const defaultVaultPath = "~/obsidian";
+export const defaultVaultName = "default";

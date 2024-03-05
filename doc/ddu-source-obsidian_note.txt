@@ -20,9 +20,9 @@ PARAMS                                       *ddu-source-obsidian_note-params*
 
                                        *ddu-source-obsidian_note-params-vault*
 vaults
-  Your vault directory paths. Notes under this directory will be retrieved.
+  Your vault properties. Notes under this directory will be retrieved.
 
-  Default: ["~/obsidian"]
+  Default: [{ path: expand('~/obsidian'), name: "default" }]
 
                                          *ddu-source-obsidian_note-params-tag*
 tag

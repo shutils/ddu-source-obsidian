@@ -1,6 +1,6 @@
 import { Denops, fn, front_matter, path, unknownutil as u } from "./deps.ts";
 
-import { isNote, Note } from "./types.ts";
+import { isNote, Note, Vault } from "./types.ts";
 
 export async function getProperties(filePath: string) {
   const content = await Deno.readTextFile(filePath);
@@ -11,9 +11,9 @@ export async function getProperties(filePath: string) {
   }
 }
 
-export async function getBacklinks(vault: string, filePath: string) {
+export async function getBacklinks(vault: Vault, filePath: string) {
   const result = new Deno.Command("rg", {
-    args: ["-l", `\\[.*\\]\\(.*${path.basename(filePath)}.*\\)`, vault],
+    args: ["-l", `\\[.*\\]\\(.*${path.basename(filePath)}.*\\)`, vault.path],
   });
   const { success, stdout } = result.outputSync();
   if (!success) {
@@ -38,9 +38,9 @@ export async function getBacklinks(vault: string, filePath: string) {
   }
 }
 
-export async function getNotes(vault: string) {
+export async function getNotes(vault: Vault) {
   const result = new Deno.Command("rg", {
-    args: ["--files", vault, "--glob", "**/*\\.md"],
+    args: ["--files", vault.path, "--glob", "**/*\\.md"],
   });
   const { success, stdout } = result.outputSync();
   if (!success) {

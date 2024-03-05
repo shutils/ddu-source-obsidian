@@ -16,7 +16,7 @@ export class Filter extends BaseFilter<BaseFilterParams> {
     return Promise.resolve(items.map((item: DduItem) => {
       if (u.isObjectOf({ note: isNote, ...u.isUnknown })(item.action)) {
         const note = item.action.note;
-        const relativePath = path.relative(note.vault, note.path);
+        const relativePath = path.relative(note.vault.path, note.path);
         item.display = `${relativePath}`;
       }
       return item;

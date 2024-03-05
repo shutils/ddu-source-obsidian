@@ -10,7 +10,7 @@ import {
   unknownutil as u,
 } from "../deps.ts";
 
-import { isNote, Note } from "../types.ts";
+import { isNote, Note, Vault } from "../types.ts";
 import { filterNotesWithTag, getNotes, paste } from "../common.ts";
 import { ensureVaults } from "../helper.ts";
 
@@ -22,7 +22,7 @@ export const isActionData = u.isObjectOf({
 export type ActionData = u.PredicateType<typeof isActionData>;
 
 type Params = {
-  vaults?: string[];
+  vaults?: Vault[];
   tag?: string;
 };
 
@@ -34,12 +34,13 @@ export class Source extends BaseSource<Params> {
   ): ReadableStream<Item<ActionData>[]> {
     return new ReadableStream({
       async start(controller) {
+        const { denops, sourceParams } = args;
         const tag = u.ensure(
-          args.sourceParams?.tag,
+          sourceParams?.tag,
           u.isOptionalOf(u.isString),
         );
         const notes: Note[] = [];
-        const vaults = ensureVaults(args.sourceParams?.vaults);
+        const vaults = await ensureVaults(denops, sourceParams?.vaults);
         await Promise.all(vaults.map(async (vault) => {
           if (tag) {
             notes.push(...filterNotesWithTag(notes, tag));

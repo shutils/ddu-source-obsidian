@@ -5,7 +5,7 @@ import {
   unknownutil as u,
 } from "../deps.ts";
 
-import { isNote, Note } from "../types.ts";
+import { isNote, Note, Vault } from "../types.ts";
 import { getBacklinks } from "../common.ts";
 import { ensureVaults } from "../helper.ts";
 
@@ -17,7 +17,7 @@ export const isActionData = u.isObjectOf({
 export type ActionData = u.PredicateType<typeof isActionData>;
 
 type Params = {
-  vaults?: string[];
+  vaults?: Vault[];
   notePath: string;
 };
 
@@ -29,9 +29,10 @@ export class Source extends BaseSource<Params> {
   ): ReadableStream<Item<ActionData>[]> {
     return new ReadableStream({
       async start(controller) {
+        const { denops, sourceParams } = args;
         const notes: Note[] = [];
-        const vaults = ensureVaults(args.sourceParams?.vaults);
-        const notePath = u.ensure(args.sourceParams?.notePath, u.isString);
+        const vaults = await ensureVaults(denops, sourceParams?.vaults);
+        const notePath = u.ensure(sourceParams?.notePath, u.isString);
         if (notePath === "") {
           controller.close();
           return;
