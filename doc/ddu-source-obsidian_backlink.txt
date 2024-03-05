@@ -20,10 +20,10 @@ NOTE: This source currently only supports markdown style links.
 PARAMS                                   *ddu-source-obsidian_backlink-params*
 
                                        *ddu-source-obsidian_tag-params-vault*
-vault
-  Your vault directory path. Notes under this directory will be retrieved.
+vaults
+  Your vault directory paths. Notes under this directory will be retrieved.
 
-  Default: "~/obsidian"
+  Default: ["~/obsidian"]
 
 
 ==============================================================================

@@ -12,6 +12,7 @@ import {
 
 import { isNote, Note } from "../types.ts";
 import { filterNotesWithTag, getNotes, paste } from "../common.ts";
+import { ensureVaults } from "../helper.ts";
 
 export const isActionData = u.isObjectOf({
   path: u.isString,
@@ -21,7 +22,7 @@ export const isActionData = u.isObjectOf({
 export type ActionData = u.PredicateType<typeof isActionData>;
 
 type Params = {
-  vault?: string;
+  vaults?: string[];
   tag?: string;
 };
 
@@ -37,17 +38,15 @@ export class Source extends BaseSource<Params> {
           args.sourceParams?.tag,
           u.isOptionalOf(u.isString),
         );
-        let notes: Note[] = [];
-        let vault: string;
-        if (args.sourceParams?.vault) {
-          vault = args.sourceParams.vault;
-        } else {
-          vault = await fn.expand(args.denops, "~/obsidian") as string;
-        }
-        notes = await getNotes(vault);
-        if (tag) {
-          notes = filterNotesWithTag(notes, tag);
-        }
+        const notes: Note[] = [];
+        const vaults = ensureVaults(args.sourceParams?.vaults);
+        await Promise.all(vaults.map(async (vault) => {
+          if (tag) {
+            notes.push(...filterNotesWithTag(notes, tag));
+          } else {
+            notes.push(...await getNotes(vault));
+          }
+        }));
         const items: Item<ActionData>[] = [];
         notes.map((note) => {
           items.push({

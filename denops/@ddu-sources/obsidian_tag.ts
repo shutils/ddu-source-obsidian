@@ -1,15 +1,16 @@
 import {
   BaseSource,
-  fn,
   GatherArguments,
   Item,
   unknownutil as u,
 } from "../deps.ts";
 
+import {  Note } from "../types.ts";
 import { getNotes, getPropertyTags } from "../common.ts";
+import { ensureVaults } from "../helper.ts";
 
 type Params = {
-  vault?: string;
+  vaults?: string[];
 };
 
 export const isActionData = u.isObjectOf({
@@ -27,13 +28,11 @@ export class Source extends BaseSource<Params> {
   ): ReadableStream<Item<ActionData>[]> {
     return new ReadableStream({
       async start(controller) {
-        let vault: string;
-        if (args.sourceParams?.vault) {
-          vault = args.sourceParams.vault;
-        } else {
-          vault = await fn.expand(args.denops, "~/obsidian") as string;
-        }
-        const notes = await getNotes(vault);
+        const vaults = ensureVaults(args.sourceParams?.vaults);
+        const notes: Note[] = [];
+        await Promise.all(vaults.map(async (vault) => {
+          notes.push(...await getNotes(vault));
+        }));
         const tags = getPropertyTags(notes);
         const items: Item<ActionData>[] = [];
         for (const tag of tags) {

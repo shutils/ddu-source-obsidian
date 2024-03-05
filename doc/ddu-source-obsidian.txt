@@ -39,7 +39,7 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_note',
 		\   params: #{
-		\       vault: expand('~/zettelkasten'),
+		\       vaults: [expand('~/zettelkasten')],
 		\   },
 		\   options: #{
 		\       matchers: [
@@ -59,7 +59,7 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_note',
 		\   params: #{
-		\       vault: expand('~/zettelkasten'),
+		\       vaults: [expand('~/zettelkasten')],
 		\       tag: input('tag: '),
 		\   },
 		\   options: #{
@@ -80,7 +80,7 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_tag',
 		\   params: #{
-		\       vault: expand('~/zettelkasten'),
+		\       vaults: [expand('~/zettelkasten')],
 		\   },
 		\ }] })
 
@@ -93,7 +93,7 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_note',
 		\   params: #{
-		\       vault: expand('~/zettelkasten'),
+		\       vaults: [expand('~/zettelkasten')],
 		\       tag: a:args.items[0].action.tag,
 		\   },
 		\   options: #{
@@ -118,7 +118,7 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_tag',
 		\   params: #{
-		\       vault: expand('~/zettelkasten'),
+		\       vaults: [expand('~/zettelkasten')],
 		\   },
 		\   options: #{
 		\       defaultAction: 'findNotes',
@@ -132,7 +132,7 @@ EXAMPLES                                        *ddu-source-obsidian-examples*
 		\ sources: [#{
 		\   name: 'obsidian_backlink',
 		\   params: #{
-		\       vault: expand('~/zettelkasten'),
+		\       vaults: [expand('~/zettelkasten')],
 		\       notePath: expand('%'),
 		\   },
 		\   options: #{

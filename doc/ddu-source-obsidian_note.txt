@@ -19,10 +19,10 @@ This source collects obsidian note in the your vault.
 PARAMS                                       *ddu-source-obsidian_note-params*
 
                                        *ddu-source-obsidian_note-params-vault*
-vault
-  Your vault directory path. Notes under this directory will be retrieved.
+vaults
+  Your vault directory paths. Notes under this directory will be retrieved.
 
-  Default: "~/obsidian"
+  Default: ["~/obsidian"]
 
                                          *ddu-source-obsidian_note-params-tag*
 tag
