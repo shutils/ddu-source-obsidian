@@ -5,7 +5,7 @@ import {
   unknownutil as u,
 } from "../deps.ts";
 
-import { Note, Vault } from "../types.ts";
+import { Note, Tag, Vault } from "../types.ts";
 import { getNotes, getPropertyTags } from "../common.ts";
 import { ensureVaults } from "../helper.ts";
 
@@ -18,7 +18,10 @@ export const isActionData = u.isObjectOf({
   tag: u.isString,
 });
 
-export type ActionData = u.PredicateType<typeof isActionData>;
+export type ActionData = {
+  text: string;
+  tag: Tag;
+};
 
 export class Source extends BaseSource<Params> {
   override kind = "word";
@@ -38,9 +41,9 @@ export class Source extends BaseSource<Params> {
         const items: Item<ActionData>[] = [];
         for (const tag of tags) {
           items.push({
-            word: tag,
+            word: tag.name,
             action: {
-              text: tag,
+              text: tag.name,
               tag,
             },
           });

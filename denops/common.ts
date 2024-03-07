@@ -1,6 +1,6 @@
 import { Denops, fn, front_matter, path, unknownutil as u } from "./deps.ts";
 
-import { isNote, Note, Vault } from "./types.ts";
+import { Note, Tag, Vault } from "./types.ts";
 
 export async function getProperties(filePath: string) {
   const content = await Deno.readTextFile(filePath);
@@ -79,20 +79,25 @@ export function filterNotesWithTag(notes: Note[], tag: string) {
   });
 }
 
-export function getPropertyTags(notes: Note[]): string[] {
-  const tags = new Set<string>();
-  notes.forEach((note) => {
-    if (isNote(note)) {
-      if (
-        u.isObjectOf({ tags: u.isArrayOf(u.isString), ...u.isUnknown })(
-          note.properties,
-        )
-      ) {
-        note.properties.tags.forEach((tag) => tags.add(tag));
-      }
+export function getPropertyTags(notes: Note[]): Tag[] {
+  const tags: Tag[] = [];
+  notes.map((note) => {
+    if (
+      u.isObjectOf({ tags: u.isArrayOf(u.isString), ...u.isUnknown })(
+        note.properties,
+      )
+    ) {
+      note.properties.tags.map((tag) => {
+        const index = tags.findIndex((t) => t.name === tag);
+        if (index === -1) {
+          tags.push({ name: tag, count: 1 });
+        } else {
+          tags[index].count += 1;
+        }
+      });
     }
   });
-  return Array.from(tags);
+  return tags;
 }
 
 // This code is from Shougo/ddu-kind-word

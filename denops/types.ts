@@ -23,3 +23,8 @@ export const isNote = u.isObjectOf({
 export type Vault = u.PredicateType<typeof isVault>;
 
 export type Note = u.PredicateType<typeof isNote>;
+
+export type Tag = {
+  name: string;
+  count: number;
+}
