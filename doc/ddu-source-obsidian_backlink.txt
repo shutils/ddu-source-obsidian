@@ -19,7 +19,7 @@ NOTE: This source currently only supports markdown style links.
 ==============================================================================
 PARAMS                                   *ddu-source-obsidian_backlink-params*
 
-                                       *ddu-source-obsidian_tag-params-vault*
+                                   *ddu-source-obsidian_backlink-params-vault*
 vaults
   Your vault properties. Notes under this directory will be retrieved.
 
