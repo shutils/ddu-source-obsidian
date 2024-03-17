@@ -53,13 +53,11 @@ export async function getNotes(vault: Vault) {
     await Promise.all(notePaths.map(async (notePath) => {
       const name = path.parse(notePath).name;
       const properties = await getProperties(notePath);
-      const backlinks = await getBacklinks(vault, notePath);
       const note: Note = {
         path: notePath,
         name,
         vault,
         properties,
-        backlinks,
       };
       notes.push(note);
     }));

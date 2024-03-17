@@ -17,7 +17,6 @@ export const isNote = u.isObjectOf({
   name: u.isString,
   vault: isVault,
   properties: u.isOptionalOf(u.isObjectOf({ ...u.isUnknown })),
-  backlinks: u.isOptionalOf(u.isArrayOf(isBacklink)),
 });
 
 export type Vault = u.PredicateType<typeof isVault>;
